@@ -38,6 +38,9 @@ router.get('/test', (req, res) => {
 
 app.use('/.netlify/functions/api', router);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 module.exports.handler = serverless(app);
 
 // get all movies
