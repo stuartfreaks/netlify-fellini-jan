@@ -52,9 +52,14 @@ module.exports.handler = serverless(app);
 
 router.get(
     '/movies', (req, res) =>
-    res.json({
-        'Movies' : "These Movies"
-    })
+    Movies.find()
+      .then((movies) => {
+        res.status(200).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      })
 )
 
 // get all Users
